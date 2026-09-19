@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>그림어휘력 검사 | PPVT New</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">PPVT NEW · PRE-K VOCABULARY</p><h1>그림어휘력 검사</h1></div>
+      <div class="top-actions"><button class="text-button" id="restartButton" type="button">처음으로</button><button class="text-button" id="dashboardButton" type="button">결과 대시보드</button></div>
+    </header>
+    <section id="welcomeScreen" class="screen card welcome-screen">
+      <div class="welcome-copy"><span class="badge">20문항 · 4개 범주</span><h2>취학전 아동 그림어휘력 검사</h2><p>검사자가 단어를 읽어 주고, 아동이 알맞은 그림 하나를 고르게 해 주세요. 각 문항의 반응 시간과 정오답이 자동 기록됩니다.</p></div>
+      <div class="start-panel"><label for="childName">아동 식별정보 <span>(선택)</span></label><input id="childName" type="text" maxlength="60" placeholder="예: 김하늘 / 사례번호" /><p class="small-note">검사 중에는 정답 여부를 보여 주지 않습니다.</p><button class="primary-button" id="startButton" type="button">검사 시작하기 <span>→</span></button></div>
+      <div class="category-overview" aria-label="검사 범주"><div><b>01</b><span>동물</span><small>5문항</small></div><div><b>02</b><span>음식</span><small>5문항</small></div><div><b>03</b><span>생활 사물</span><small>5문항</small></div><div><b>04</b><span>기초 개념</span><small>5문항</small></div></div>
+    </section>
+    <section id="testScreen" class="screen hidden" aria-live="polite">
+      <div class="test-head"><div><span class="badge" id="categoryBadge"></span><p class="question-count" id="questionCount"></p></div><div class="timer" aria-label="현재 문항 경과 시간"><span>반응 시간</span><strong id="liveTimer">0.0초</strong></div></div>
+      <div class="progress-track" aria-label="검사 진행도"><div id="progressBar"></div></div>
+      <div class="prompt-card"><p>검사자가 읽어 주세요</p><h2 id="targetWord"></h2><span>“<span id="targetWordQuote"></span>” 그림을 찾아보세요.</span></div>
+      <div id="optionsGrid" class="options-grid" aria-label="그림 선택지"></div>
+      <div class="selection-row"><p id="selectionHint">그림 하나를 선택해 주세요.</p><button id="nextButton" class="primary-button compact" type="button" disabled>다음 문항 <span>→</span></button></div>
+    </section>
+    <section id="dashboardScreen" class="screen hidden">
+      <div class="dashboard-head"><div><span class="badge completed-badge">검사 완료</span><h2>결과 대시보드</h2><p id="resultMeta"></p></div><div class="dashboard-actions"><button class="secondary-button" id="reviewButton" type="button">문항별 결과 보기</button><button class="primary-button" id="csvButton" type="button">CSV 내보내기 <span>↓</span></button></div></div>
+      <div class="score-grid"><article class="score-card total"><p>총점</p><strong id="totalScore">0 <small>/ 20</small></strong><span id="totalRate">정답률 0%</span></article><article class="score-card"><p>전체 반응 시간</p><strong id="totalTime">0.0초</strong><span>선택한 문항 기준</span></article><article class="score-card"><p>평균 반응 시간</p><strong id="avgTime">0.0초</strong><span>문항당</span></article></div>
+      <section class="category-section"><div class="section-title"><h3>범주별 점수</h3><p>정답 수와 평균 반응 시간</p></div><div id="categoryScores" class="category-scores"></div></section>
+      <section id="detailSection" class="detail-section hidden"><div class="section-title"><h3>문항별 기록</h3><p>파일명이 없는 그림은 텍스트와 파일명으로 표시됩니다.</p></div><div class="table-wrap"><table><thead><tr><th>문항</th><th>범주</th><th>목표 단어</th><th>선택</th><th>결과</th><th>반응 시간</th></tr></thead><tbody id="resultRows"></tbody></table></div></section>
+      <p class="disclaimer">본 도구는 교육 및 선별 목적의 예시 검사입니다. 표준화된 진단검사를 대체하지 않습니다.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
